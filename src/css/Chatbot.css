@@ -1,0 +1,48 @@
+/* Chatbot.css */
+.logo-container {
+    position: relative; /* Establishes a positioning context for absolute children */
+    text-align: center;
+    margin-top: 5vh;
+  }
+  
+  .logo-text {
+    position: absolute; /* Positions the text absolutely within its parent */
+    top: 41%; /* Centers vertically */
+    left: 50%; /* Centers horizontally */
+    transform: translate(-50%, -50%); /* Adjusts for the element's own dimensions */
+    z-index: 2; /* Ensures the text is above the image */
+    color: hsl(0, 0%, 100%); /* Text color */
+    font-size: 2.5rem;
+    font-family: 'Roboto Flex', sans-serif;
+  }
+  
+  .logo-bold {
+    font-weight: bold; /* Makes "GBG" bold */
+  }
+  
+  .logo-image {
+    width: 5rem; /* Example width, adjust as needed */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centers image horizontally */
+    position: relative; /* Ensures the container's positioning context applies */
+    z-index: 1; /* Ensures the image is below the text */
+  }
+  .logo-desc {
+    color: hsl(0, 0%, 100%); /* Text color */
+  }
+
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Or adjust based on your layout's needs */
+  }
+  
+  .messages-container {
+    flex-grow: 1;
+    overflow-y: auto; /* Allows scrolling for overflow content */
+    margin-bottom: 17vh; /* Space above the input box */
+  }
+  
+
+  

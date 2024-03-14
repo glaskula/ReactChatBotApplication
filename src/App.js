@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Chatbot from './components/Chatbot';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'; // Add this line to import App.css
+// In App.js or another top-level component
+import './fonts.css'; // The path should point to your fonts.css file
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Chatbot />
     </div>
   );
 }

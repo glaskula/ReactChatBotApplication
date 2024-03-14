@@ -1,0 +1,10 @@
+/* In src/fonts.css or a similar file */
+@font-face {
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Flex'), local('RobotoFlex-Regular'),
+         url('./fonts/RobotoFlex-Regular.ttf') format('truetype');
+    /* Use the correct path where you placed your ttf font file */
+  }
+  

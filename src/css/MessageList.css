@@ -1,0 +1,23 @@
+/* MessageList.css */
+.message-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensure the container takes full width */
+  align-items: center; /* This centers the messages horizontally in the flex container */
+}
+/* Custom scrollbar styles */
+.messages-container::-webkit-scrollbar {
+  width: 12px; /* Adjust width of scrollbar */
+}
+
+.messages-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Adjust track color */
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: #888; /* Adjust thumb color */
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Adjust thumb hover color */
+}

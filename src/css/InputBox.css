@@ -1,0 +1,29 @@
+.fixed-bottom-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0rem;
+  background-color: transparent; /* Customize or remove background-color as needed */
+}
+.fixed-bottom-container .custom-form-control {
+  height: 8vh !important;
+}
+.disclaimer {
+  text-align: center;
+  padding: 0.5rem;
+  margin-top: -1rem; /* Adjust so it's below the InputBox */
+  font-size: 0.75rem;
+}
+
+.custom-form-control {
+  height: 7vh !important;
+  border-radius: 10px !important;
+}
+
+.custom-send-button {
+  border-radius: 10px !important;
+  background-color: #096BDB !important;
+  margin-left: 10px !important;
+}
+

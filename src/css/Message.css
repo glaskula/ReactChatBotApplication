@@ -1,0 +1,32 @@
+/* Message.css */
+.message {
+  width: 100%; /* Set a fixed width for all messages */
+  min-height: 4rem; /* Minimum height to ensure even empty messages have a visible container */
+  word-wrap: break-word; /* Ensures that long words will wrap and not extend outside the container */
+  margin-bottom: 0px; /* Space between messages */
+  padding: 0px; /* Padding inside the message box */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.875rem;
+}
+
+.user-message,
+.bot-message {
+  /* Continue with your specific styles for user and bot messages */
+  /* For example: */
+  background-color: #ACD1E3; /* Set your desired background color */
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 1rem;
+  padding-bottom: 0rem;
+}
+
+.bot-message {
+  background-color: #B8D7E7; /* Different background for another type */
+}
+
+/* Add custom styling for your <strong> tags if needed, e.g., for "You" and "ChatGBG" */
+strong {
+  font-weight: bold;
+}
