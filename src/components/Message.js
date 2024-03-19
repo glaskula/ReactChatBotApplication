@@ -2,10 +2,14 @@
 import React from 'react';
 import '../css/Message.css'; // Make sure this path is correct
 import { Container, Row, Col } from 'react-bootstrap';
+import blackLogo from '../assets/BlackLogo.svg';
 
 const Message = ({ text, isUserMessage }) => {
   // Define message prefix and apply formatting
-  const messagePrefix = isUserMessage ? <strong>You</strong> : <strong>ChatGBG</strong>;
+  const messagePrefix = isUserMessage ? <strong>You</strong> : (<>
+    <img src={blackLogo} alt="Logo" className="message-logo" />
+    <strong>ChatGBG</strong>
+  </>);
   // Add a line break between the prefix and the message text
   const formattedMessage = (
     <>

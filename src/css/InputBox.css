@@ -7,7 +7,7 @@
   background-color: transparent; /* Customize or remove background-color as needed */
 }
 .fixed-bottom-container .custom-form-control {
-  height: 8vh !important;
+  height: 6vh !important;
 }
 .disclaimer {
   text-align: center;
@@ -17,13 +17,23 @@
 }
 
 .custom-form-control {
-  height: 7vh !important;
+  height: 6vh !important;
   border-radius: 10px !important;
+  background-color: #698FA4 !important; /* Black with 25% opacity */
+  color: #e0e0e0 !important; /* Softer white/light gray text */
+  border: 0px solid #fff !important; /* Optional: white border for visibility */
+}
+
+.custom-form-control::placeholder { /* Styles the placeholder text */
+  color: #e0e0e0 !important; /* Softer white/light gray to match the input text */
+  opacity: 1; /* Ensure the placeholder color is fully opaque */
 }
 
 .custom-send-button {
   border-radius: 10px !important;
   background-color: #096BDB !important;
   margin-left: 10px !important;
+  height: 6vh !important;
 }
+
 

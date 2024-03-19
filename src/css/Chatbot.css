@@ -1,48 +1,185 @@
-/* Chatbot.css */
+/* Chatbot.css - Original styles preserved */
 .logo-container {
-    position: relative; /* Establishes a positioning context for absolute children */
-    text-align: center;
-    margin-top: 5vh;
-  }
-  
-  .logo-text {
-    position: absolute; /* Positions the text absolutely within its parent */
-    top: 41%; /* Centers vertically */
-    left: 50%; /* Centers horizontally */
-    transform: translate(-50%, -50%); /* Adjusts for the element's own dimensions */
-    z-index: 2; /* Ensures the text is above the image */
-    color: hsl(0, 0%, 100%); /* Text color */
-    font-size: 2.5rem;
-    font-family: 'Roboto Flex', sans-serif;
-  }
-  
-  .logo-bold {
-    font-weight: bold; /* Makes "GBG" bold */
-  }
-  
-  .logo-image {
-    width: 5rem; /* Example width, adjust as needed */
-    height: auto;
-    display: block;
-    margin: 0 auto; /* Centers image horizontally */
-    position: relative; /* Ensures the container's positioning context applies */
-    z-index: 1; /* Ensures the image is below the text */
-  }
-  .logo-desc {
-    color: hsl(0, 0%, 100%); /* Text color */
+  position: relative;
+  text-align: center;
+  margin-top: 5vh;
+}
+
+.logo-text {
+  position: absolute;
+  top: 41%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: hsl(0, 0%, 100%);
+  font-size: 2.5rem;
+  font-family: 'Roboto Flex', sans-serif;
+}
+
+.logo-bold {
+  font-weight: bold;
+}
+
+.logo-image {
+  width: 5rem;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-desc {
+  color: hsl(0, 0%, 100%);
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.messages-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 17vh;
+}
+
+.skyline-image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.25;
+  z-index: -1;
+}
+
+/* Existing mobile adjustment for skyline image */
+@media (max-width: 767px) {
+  .skyline-image {
+    top: auto;
+    bottom: 22vh;
   }
 
-  .chat-container {
+  /* New adjustments when there are messages */
+  .skyline-image.with-messages {
+    top: 4vh; /* Position at the bottom */
+  }
+}
+
+/* Additional styles for when there are no messages */
+.centered-logo {
+  position: fixed; /* Use fixed to ensure it's centered relative to the viewport */
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+}
+
+.centered-logo .logo-image,
+.centered-logo .logo-text {
+  font-size: 2.5rem; /* Increase size for visibility */
+  width: auto; /* Adjust width as needed */
+}
+/* Adjustments for centered logo, applicable when there are no messages */
+.centered-logo .logo-desc {
+  font-size: 1rem; /* Adjust size for visibility */
+  width: auto; /* Adjust width as needed */
+  position: absolute; /* Position absolutely within the centered-logo container */
+  top: 60%; /* Adjust this value to move the logo-desc closer to the logo-text */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3; /* Ensures it's on top of the image */
+  white-space: nowrap; /* Prevents the text from wrapping */
+
+}
+
+/* Adjust the .logo-image specifically when there are no messages */
+.centered-logo .logo-image {
+  width: 15rem; /* Larger logo size */
+}
+
+/* Specific mobile adjustments if necessary */
+@media (max-width: 767px) {
+  .centered-logo .logo-image,
+  .centered-logo .logo-text{
+    font-size: 2.5rem; /* Adjust size for smaller screens */
+  }
+  .centered-logo .logo-desc {
+    font-size: 1rem; /* Adjust size for smaller screens */
+  }
+
+  .centered-logo .logo-image {
+    width: 12rem; /* Adjust logo size for smaller screens */
+  }
+}
+
+/* Ensure this doesn't overly enlarge or misalign when messages are present */
+.logo-text, .logo-desc {
+  transition: font-size 0.3s ease; /* Smooth transition for text resizing */
+}
+
+.logo-image {
+  transition: width 0.3s ease; /* Smooth transition for image resizing */
+}
+
+.preset-messages-container {
+  position: absolute;
+  bottom: 18vh; /* Adjust this value based on the height of your input field */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.125rem; /* Space between buttons */
+  z-index: 2; /* Ensure it's above other content */
+}
+
+
+.preset-message {
+  font-size: 1rem !important; /* Adjust based on preference */
+  background-color: #698FA4 !important; /* Example color - Bootstrap primary variant */
+  color: white !important;
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  width: 12rem;
+  height: 4rem;
+  border: 0px solid #fff !important; /* Optional: white border for visibility */
+
+}
+
+/* Mobile adjustments for preset messages container */
+/* Mobile adjustments for preset messages container */
+@media (max-width: 768px) {
+  .preset-messages-container {
+    bottom: 15vh; /* Adjust based on the position above the input field */
+    left: 0;
+    right: 0;
     display: flex;
-    flex-direction: column;
-    height: 100vh; /* Or adjust based on your layout's needs */
-  }
-  
-  .messages-container {
-    flex-grow: 1;
-    overflow-y: auto; /* Allows scrolling for overflow content */
-    margin-bottom: 17vh; /* Space above the input box */
-  }
-  
+    overflow-x: auto; /* Enables horizontal scrolling */
+    overflow-y: hidden; /* Prevents vertical scrolling */
+    white-space: nowrap; /* Keeps items in a single horizontal line */
+    padding-left: 0; /* Ensures the first item can align to the screen's left edge */
+    scroll-padding-left: 0; /* Adjusts padding within the scrollable area */
+    -webkit-overflow-scrolling: touch; /* Improves scrolling on touch devices */
+    width: 100%; /* Ensures the container spans the full width */
+    justify-content: flex-start; /* Aligns items to the start of the container */
+    -webkit-overflow-scrolling: touch;
 
-  
+  }
+
+  .preset-message {
+    width: 80vw; /* Each button takes up 80% of the viewport width */
+    min-width: 80vw; /* Prevents buttons from being smaller than 80% of the viewport width */
+    margin-left: 0.9rem; /* Space between buttons */
+    flex: 0 0 auto; /* Prevents flex items from growing or shrinking */
+  }
+   /* Hiding the scrollbar in WebKit browsers */
+   .preset-messages-container::-webkit-scrollbar {
+    display: none; /* Alternatively, height: 0; for a more explicit approach */
+  }
+}
+
+
+
+
+

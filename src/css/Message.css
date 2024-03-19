@@ -4,6 +4,7 @@
   min-height: 4rem; /* Minimum height to ensure even empty messages have a visible container */
   word-wrap: break-word; /* Ensures that long words will wrap and not extend outside the container */
   margin-bottom: 0px; /* Space between messages */
+  margin-top: 0px;
   padding: 0px; /* Padding inside the message box */
   display: flex;
   flex-direction: column;
@@ -29,4 +30,11 @@
 /* Add custom styling for your <strong> tags if needed, e.g., for "You" and "ChatGBG" */
 strong {
   font-weight: bold;
+}
+.message-logo {
+  height: 1.17rem; /* Adjust size as needed */
+  width: 1rem; /* Adjust size as needed */
+  margin-left: -1.5rem; /* Adds some space between the logo and the text */
+  margin-right: 0.5rem; /* Adds some space between the logo and the text */
+  margin-top: -0.25rem;
 }

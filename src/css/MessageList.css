@@ -7,15 +7,18 @@
 }
 /* Custom scrollbar styles */
 .messages-container::-webkit-scrollbar {
-  width: 12px; /* Adjust width of scrollbar */
+  width: 0.5rem; /* Adjust width of scrollbar */
 }
 
 .messages-container::-webkit-scrollbar-track {
   background: #f1f1f1; /* Adjust track color */
+  border-radius: 0.25rem; /* Adds rounded borders to the scrollbar thumb */
+
 }
 
 .messages-container::-webkit-scrollbar-thumb {
   background: #888; /* Adjust thumb color */
+  border-radius: 0.25rem; /* Adds rounded borders to the scrollbar thumb */
 }
 
 .messages-container::-webkit-scrollbar-thumb:hover {

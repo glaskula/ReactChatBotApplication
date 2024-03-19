@@ -30,7 +30,7 @@ const MessageList = ({ messages }) => {
   return (
     <Container ref={containerRef}>
       {messages.map((message) => (
-        <Row key={message.id} className="justify-content-center mb-2">
+        <Row key={message.id} className="justify-content-center mb-0">
           <Col xs={12} md={8} lg={8}>
             <Message text={message.text} isUserMessage={message.isUserMessage} />
           </Col>
