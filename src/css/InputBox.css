@@ -31,9 +31,17 @@
 
 .custom-send-button {
   border-radius: 10px !important;
-  background-color: #096BDB !important;
+  background-color: #096BDB !important; /* Primary button color */
   margin-left: 10px !important;
   height: 6vh !important;
+  transition: background-color 0.3s ease, transform 0.3s ease !important; /* Smooth transition for hover effects */
 }
+
+.custom-send-button:hover, .custom-send-button:focus {
+  background-color: #075aa9 !important; /* Darker shade for hover/focus */
+  transform: scale(1.05); /* Slightly enlarges the button */
+  color: #ffffff !important; /* Optional: Adjust text color on hover/focus for better visibility */
+}
+
 
 

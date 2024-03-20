@@ -43,7 +43,7 @@ const Chatbot = () => {
       </div>
       {messLength && (
         <div className="preset-messages-container">
-          <Button onClick={() => handlePresetMessage("Example 1")} variant="primary" className="preset-message">Example 1</Button>
+          <Button onClick={() => handlePresetMessage("Suggest three activities I can do with my family in Gothenburg.")} variant="primary" className="preset-message">Suggest three activities I can do with my family in Gothenburg.</Button>
           <Button onClick={() => handlePresetMessage("Example 2")} variant="primary" className="preset-message">Example 2</Button>
           <Button onClick={() => handlePresetMessage("Example 3")} variant="primary" className="preset-message">Example 3</Button>
         </div>

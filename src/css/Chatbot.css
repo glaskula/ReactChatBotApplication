@@ -58,12 +58,12 @@
 @media (max-width: 767px) {
   .skyline-image {
     top: auto;
-    bottom: 22vh;
+    bottom: 30vh;
   }
 
   /* New adjustments when there are messages */
   .skyline-image.with-messages {
-    top: 4vh; /* Position at the bottom */
+    top: 5vh; /* Position at the bottom */
   }
 }
 
@@ -136,22 +136,31 @@
 
 
 .preset-message {
-  font-size: 1rem !important; /* Adjust based on preference */
+  font-size: 12px !important; /* Adjust based on preference */
   background-color: #698FA4 !important; /* Example color - Bootstrap primary variant */
   color: white !important;
   border: none;
   border-radius: 5px; /* Rounded corners */
   width: 12rem;
-  height: 4rem;
+  height: 4.3rem;
   border: 0px solid #fff !important; /* Optional: white border for visibility */
-
+  text-align: left !important; /* Aligns text to the left */
+  align-items: flex-start !important; /* Aligns text to the top */
+  display: flex !important; /* Utilizes flexbox for layout */
+  padding-left: 0.75rem !important;
+  transition: background-color 0.3s ease, transform 0.3s ease !important; /* Smooth transition for hover effects */
+}
+.preset-message:hover, .preset-message:focus {
+  background-color: #507892 !important; /* Darker shade for hover/focus */
+  transform: scale(1.05); /* Slightly enlarges the button */
+  color: #ECEFF1 !important; /* Optional: change text color on hover */
 }
 
 /* Mobile adjustments for preset messages container */
 /* Mobile adjustments for preset messages container */
 @media (max-width: 768px) {
   .preset-messages-container {
-    bottom: 15vh; /* Adjust based on the position above the input field */
+    bottom: 18vh; /* Adjust based on the position above the input field */
     left: 0;
     right: 0;
     display: flex;
@@ -164,14 +173,24 @@
     width: 100%; /* Ensures the container spans the full width */
     justify-content: flex-start; /* Aligns items to the start of the container */
     -webkit-overflow-scrolling: touch;
+    font-size: 120px !important; /* Adjust based on preference */
 
   }
 
   .preset-message {
-    width: 80vw; /* Each button takes up 80% of the viewport width */
-    min-width: 80vw; /* Prevents buttons from being smaller than 80% of the viewport width */
+    font-size: 16px !important; /* Adjust based on preference */
+    height: 6rem;
+    min-height: 6rem; /* Prevents buttons from being smaller than 80% of the viewport width */
+    width: 75vw; /* Each button takes up 80% of the viewport width */
+    min-width: 75vw; /* Prevents buttons from being smaller than 80% of the viewport width */
     margin-left: 0.9rem; /* Space between buttons */
-    flex: 0 0 auto; /* Prevents flex items from growing or shrinking */
+    padding: 1rem !important;
+    text-align: left !important; /* Aligns text to the left */
+    align-items: flex-start !important; /* Aligns text to the top */
+    display: block; /* Change from flex to block if flex isn't needed for layout */
+    overflow: hidden; /* Hides overflow content */
+    white-space: normal; /* Allows text to wrap */
+    border-radius: 10px !important;
   }
    /* Hiding the scrollbar in WebKit browsers */
    .preset-messages-container::-webkit-scrollbar {
@@ -179,6 +198,15 @@
   }
 }
 
+@media (max-width: 380px) {
+  .skyline-image {
+    top: auto;
+    bottom: 35vh !important;
+  }
+  .preset-messages-container {
+    bottom: 20vh; /* Adjust based on the position above the input field */
+  }
+}
 
 
 
