@@ -8,13 +8,37 @@ import '../css/Chatbot.css'; // Adjust the path based on your structure
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
+  const url = 'https://flaskapp-002ep-ai-xjob.apps.ocpext.gbgpaas.se/ask'; // Your Flask route
 
-  const getLlmResponse = (userMessage) => {
-    return `LLM response to: "${userMessage}"`;
+  // Modified to send user's message to the Flask app and receive a response
+  const getLlmResponse = async (userMessage) => {
+    const postData = {
+      question: userMessage // Your user's question
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postData)
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.text();
+      return data; // The response from the server
+    } catch (error) {
+      console.error('There was a problem with the POST request:', error);
+      return "Sorry, I couldn't fetch a response. Please try again later."; // Error handling response
+    }
   };
 
-  const handleSendMessage = (newMessage) => {
-    const llmResponse = getLlmResponse(newMessage);
+  const handleSendMessage = async (newMessage) => {
+    const llmResponse = await getLlmResponse(newMessage); // Wait for the LLM response
     setMessages(messages => [
       ...messages,
       { id: messages.length + 1, text: newMessage, isUserMessage: true },
@@ -23,7 +47,6 @@ const Chatbot = () => {
   };
 
   const handlePresetMessage = (message) => {
-    // Function to handle sending preset messages
     handleSendMessage(message);
   };
 
@@ -31,7 +54,6 @@ const Chatbot = () => {
 
   return (
     <Container className="chat-container">
-
       <img src={skyline} alt="Skyline" className={`skyline-image ${messages.length > 0 ? 'with-messages' : ''}`} />
       <div className={`logo-container ${messLength ? 'centered-logo' : ''}`}>
         <div className="logo-text">Chat<span className="logo-bold">GBG</span></div>
