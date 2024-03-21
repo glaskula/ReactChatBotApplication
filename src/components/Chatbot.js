@@ -15,7 +15,7 @@ const Chatbot = () => {
     const postData = {
       question: userMessage // Your user's question
     };
-
+    
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -29,8 +29,11 @@ const Chatbot = () => {
         throw new Error('Network response was not ok');
       }
   
-      const data = await response.text();
-      return data; // The response from the server
+      // Assuming your Flask app returns JSON, you should use response.json() instead of response.text()
+      const data = await response.json(); // This line is changed to parse the response as JSON
+  
+      // Accessing the specific field from the JSON response, based on the Flask example
+      return data.response; // Adjust this line to match the structure of your JSON response
     } catch (error) {
       console.error('There was a problem with the POST request:', error);
       return "Sorry, I couldn't fetch a response. Please try again later."; // Error handling response
