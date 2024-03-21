@@ -9,13 +9,15 @@ import '../css/Chatbot.css'; // Adjust the path based on your structure
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const url = 'https://flaskapp-002ep-ai-xjob.apps.ocpext.gbgpaas.se/ask'; // Your Flask route
+  const [isLoading, setIsLoading] = useState(false); // New state for loading indicator
 
   // Modified to send user's message to the Flask app and receive a response
   const getLlmResponse = async (userMessage) => {
+    setIsLoading(true); // Start loading
     const postData = {
       question: userMessage // Your user's question
     };
-    
+
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -24,30 +26,47 @@ const Chatbot = () => {
         },
         body: JSON.stringify(postData)
       });
-  
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-  
-      // Assuming your Flask app returns JSON, you should use response.json() instead of response.text()
-      const data = await response.json(); // This line is changed to parse the response as JSON
-  
-      // Accessing the specific field from the JSON response, based on the Flask example
-      return data.response; // Adjust this line to match the structure of your JSON response
+
+      const data = await response.json();
+      setIsLoading(false); // Stop loading
+      return data.response;
     } catch (error) {
       console.error('There was a problem with the POST request:', error);
-      return "Sorry, I couldn't fetch a response. Please try again later."; // Error handling response
+      setIsLoading(false); // Stop loading even on error
+      return "Sorry, I couldn't fetch a response. Please try again later.";
     }
   };
 
   const handleSendMessage = async (newMessage) => {
-    const llmResponse = await getLlmResponse(newMessage); // Wait for the LLM response
+    // Add user message
     setMessages(messages => [
       ...messages,
       { id: messages.length + 1, text: newMessage, isUserMessage: true },
-      { id: messages.length + 2, text: llmResponse, isUserMessage: false }
     ]);
+    
+    // Add temporary loading message for the bot response
+    const tempMessageId = messages.length + 2;
+    setMessages(messages => [
+      ...messages,
+      { id: tempMessageId, text: "", isUserMessage: false, isLoading: true },
+    ]);
+  
+    // Fetch the actual response
+    const llmResponse = await getLlmResponse(newMessage);
+    
+    // Update the temporary message with the actual response and remove loading state
+    setMessages(messages => messages.map(message => {
+      if (message.id === tempMessageId) {
+        return { ...message, text: llmResponse, isLoading: false };
+      }
+      return message;
+    }));
   };
+  
 
   const handlePresetMessage = (message) => {
     handleSendMessage(message);
