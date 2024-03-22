@@ -32,7 +32,10 @@ const MessageList = ({ messages }) => {
       {messages.map((message) => (
         <Row key={message.id} className="justify-content-center mb-0">
           <Col xs={12} md={8} lg={8}>
-            <Message text={message.text} isUserMessage={message.isUserMessage} />
+            <Message
+              text={message.text}
+              isUserMessage={message.isUserMessage}
+              isLoading={message.isLoading} />
           </Col>
         </Row>
       ))}
