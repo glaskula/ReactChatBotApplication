@@ -14,10 +14,16 @@ const Chatbot = () => {
   // Modified to send user's message to the Flask app and receive a response
   const getLlmResponse = async (userMessage) => {
     setIsLoading(true); // Start loading
+    // Create a conversation history from the current messages state
+    const conversationHistory = messages.map(message => ({
+      text: message.text,
+      isUserMessage: message.isUserMessage,
+    }));
     const postData = {
-      question: userMessage // Your user's question
+      question: userMessage, // Your user's question
+      history: conversationHistory, // Include the conversation history
     };
-
+    console.log(postData);
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -26,11 +32,11 @@ const Chatbot = () => {
         },
         body: JSON.stringify(postData)
       });
-
+  
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-
+  
       const data = await response.json();
       setIsLoading(false); // Stop loading
       return data.response;
@@ -40,6 +46,7 @@ const Chatbot = () => {
       return "Sorry, I couldn't fetch a response. Please try again later.";
     }
   };
+  
 
   const handleSendMessage = async (newMessage) => {
     // Add user message
