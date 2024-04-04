@@ -207,7 +207,11 @@
     bottom: 20vh; /* Adjust based on the position above the input field */
   }
 }
-
+.language-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+}
 
 
 
