@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import MessageList from './MessageList';
 import InputBox from './InputBox';
 import logo from '../assets/gbgLogga.svg';
@@ -89,6 +89,19 @@ const Chatbot = () => {
 
   const messLength = messages.length === 0;
 
+  useEffect(() => {
+    const adjustHeight = () => {
+      const viewportHeight = window.innerHeight + 'px';
+      document.querySelector('.chat-container').style.height = viewportHeight;
+    };
+
+    window.addEventListener('resize', adjustHeight);
+    adjustHeight(); // Call on initial render
+
+    return () => window.removeEventListener('resize', adjustHeight); // Cleanup
+  }, []); // Empty dependency array means this runs once on mount and cleanup on unmount
+
+
   return (
     <Container className="chat-container">
       <img src={skyline} alt="Skyline" className={`skyline-image ${messages.length > 0 ? 'with-messages' : ''}`} />
@@ -109,8 +122,8 @@ const Chatbot = () => {
       {messLength && (
         <div className="preset-messages-container">
           <Button onClick={() => handlePresetMessage("Suggest three activities I can do with my family in Gothenburg.")} variant="primary" className="preset-message">Suggest three activities I can do with my family in Gothenburg.</Button>
-          <Button onClick={() => handlePresetMessage("Example 2")} variant="primary" className="preset-message">Example 2</Button>
-          <Button onClick={() => handlePresetMessage("Example 3")} variant="primary" className="preset-message">Example 3</Button>
+          <Button onClick={() => handlePresetMessage("Is there any wheelchair accessible cafés?")} variant="primary" className="preset-message">Is there any wheelchair accessible cafés?</Button>
+          <Button onClick={() => handlePresetMessage("How can I get around Gothenburg? What are the public transportation options?")} variant="primary" className="preset-message">How can I get around Gothenburg? What are the public transportation options?</Button>
         </div>
       )}
       <div className="input-container">

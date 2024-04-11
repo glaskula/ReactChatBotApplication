@@ -1,4 +1,9 @@
 /* Chatbot.css - Original styles preserved */
+body, html {
+  overflow: hidden; /* This will prevent scrolling on the entire page */
+  height: 100%; /* This ensures that the body takes up the full viewport height */
+}
+
 .logo-container {
   position: relative;
   text-align: center;
@@ -141,7 +146,7 @@
   color: white !important;
   border: none;
   border-radius: 5px; /* Rounded corners */
-  width: 14rem;
+  width: 15vw;
   height: 4.3rem;
   border: 0px solid #fff !important; /* Optional: white border for visibility */
   text-align: left !important; /* Aligns text to the left */
@@ -160,7 +165,7 @@
 /* Mobile adjustments for preset messages container */
 @media (max-width: 768px) {
   .preset-messages-container {
-    bottom: 18vh; /* Adjust based on the position above the input field */
+    bottom: 19vh; /* Adjust based on the position above the input field */
     left: 0;
     right: 0;
     display: flex;
@@ -174,7 +179,6 @@
     justify-content: flex-start; /* Aligns items to the start of the container */
     -webkit-overflow-scrolling: touch;
     font-size: 120px !important; /* Adjust based on preference */
-
   }
 
   .preset-message {
@@ -211,6 +215,7 @@
   position: fixed;
   top: 1rem;
   right: 2rem;
+  visibility: hidden;
 }
 
 
