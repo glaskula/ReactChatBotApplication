@@ -3,6 +3,15 @@ import '../css/Message.css';
 import blackLogo from '../assets/BlackLogo.svg';
 
 const Message = ({ text, isUserMessage, isLoading }) => {
+  const formatMessage = (message) => {
+    return message.split('\n').map((part, index) => (
+      <span key={index}>
+        {part}
+        <br />
+      </span>
+    ));
+  };
+
   const messageContent = isLoading ? (
     <span className="loading-dots">
       <span className="dot"></span>
@@ -10,7 +19,7 @@ const Message = ({ text, isUserMessage, isLoading }) => {
       <span className="dot"></span>
     </span>
   ) : (
-    <span>{text}</span>
+    formatMessage(text)
   );
 
   return (

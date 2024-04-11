@@ -46,7 +46,7 @@
 }
 
 .skyline-image {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -124,8 +124,8 @@
 }
 
 .preset-messages-container {
-  position: absolute;
-  bottom: 18vh; /* Adjust this value based on the height of your input field */
+  position: fixed;
+  bottom: 15vh; /* Adjust this value based on the height of your input field */
   left: 0;
   right: 0;
   display: flex;
@@ -141,7 +141,7 @@
   color: white !important;
   border: none;
   border-radius: 5px; /* Rounded corners */
-  width: 12rem;
+  width: 14rem;
   height: 4.3rem;
   border: 0px solid #fff !important; /* Optional: white border for visibility */
   text-align: left !important; /* Aligns text to the left */
@@ -208,7 +208,7 @@
   }
 }
 .language-toggle {
-  position: absolute;
+  position: fixed;
   top: 1rem;
   right: 2rem;
 }
