@@ -1,32 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../css/Message.css';
 import blackLogo from '../assets/BlackLogo.svg';
 
 const Message = ({ text, isUserMessage, isLoading }) => {
-  // Using a single state to manage the displayed text ensures we don't skip characters.
   const [displayedText, setDisplayedText] = useState('');
+  const messageRef = useRef(null);  // Reference to the message div
 
   useEffect(() => {
-    // Directly setting the text for user messages or when loading to avoid animation.
     if (isUserMessage || isLoading) {
       setDisplayedText(text);
+      scrollToBottom();
     } else {
-      // Ensure we start with a clean slate for bot messages.
       setDisplayedText('');
-
-      // Define a function to display text character by character.
       const displayTextCharacterByCharacter = (index = 0) => {
         if (index < text.length) {
           setDisplayedText((currText) => currText + text.charAt(index));
-          // Queue the next character.
-          setTimeout(() => displayTextCharacterByCharacter(index + 1), 25);
+          if (index % 5 === 0) {  // Adjust scroll every 5 characters to reduce overhead
+            scrollToBottom();
+          }
+          setTimeout(() => displayTextCharacterByCharacter(index + 1), 15);
+        } else {
+          scrollToBottom();  // Ensure we scroll to the bottom at the end of the animation
         }
       };
-
-      // Start displaying the bot's message character by character.
       displayTextCharacterByCharacter();
     }
-  }, [text, isUserMessage, isLoading]); // React to changes in these props.
+  }, [text, isUserMessage, isLoading]);
+
+  // Define a function to scroll to the bottom of the message element
+  const scrollToBottom = () => {
+    messageRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const formatMessage = (message) => {
     return message.split('\n').map((part, index) => (
@@ -37,7 +41,6 @@ const Message = ({ text, isUserMessage, isLoading }) => {
     ));
   };
 
-  // Choose what to display based on the loading state.
   const messageContent = isLoading ? (
     <span className="loading-dots">
       <span className="dot"></span>
@@ -49,7 +52,7 @@ const Message = ({ text, isUserMessage, isLoading }) => {
   );
 
   return (
-    <div className={`message ${isUserMessage ? 'user-message' : 'bot-message'}`}>
+    <div ref={messageRef} className={`message ${isUserMessage ? 'user-message' : 'bot-message'}`}>
       <div className="message-flex-container">
         {!isUserMessage && (
           <>

@@ -4,28 +4,12 @@ import Message from './Message';
 import '../css/MessageList.css';
 
 const MessageList = ({ messages }) => {
-  const messagesEndRef = useRef(null); // Ref for the latest message / scrolling target
   const containerRef = useRef(null); // Ref for the container, if needed for overflow adjustments
 
   useEffect(() => {
-    // Function to adjust overflow, if necessary
-    const adjustOverflow = () => {
-      const container = containerRef.current;
-      if (container) {
-        container.style.overflowX = container.scrollWidth <= container.clientWidth ? 'hidden' : 'auto';
-      }
-    };
-
-    window.addEventListener('resize', adjustOverflow);
-    adjustOverflow(); // Initial adjustment
-
-    return () => window.removeEventListener('resize', adjustOverflow);
-  }, []); // Empty dependency array means this runs once on mount
-
-  useEffect(() => {
-    // Auto-scroll to the latest message
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]); // Dependency on messages ensures this runs when messages update
+    // Ensure the last message is always in view
+    containerRef.current?.lastChild?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <Container ref={containerRef}>
@@ -35,12 +19,11 @@ const MessageList = ({ messages }) => {
             <Message
               text={message.text}
               isUserMessage={message.isUserMessage}
-              isLoading={message.isLoading} />
+              isLoading={message.isLoading}
+            />
           </Col>
         </Row>
       ))}
-      {/* Invisible element at the bottom for auto-scrolling */}
-      <div ref={messagesEndRef} />
     </Container>
   );
 };

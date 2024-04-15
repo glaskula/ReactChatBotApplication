@@ -122,7 +122,7 @@ const Chatbot = () => {
       {messLength && (
         <div className="preset-messages-container">
           <Button onClick={() => handlePresetMessage("Suggest three activities I can do with my family in Gothenburg.")} variant="primary" className="preset-message">Suggest three activities I can do with my family in Gothenburg.</Button>
-          <Button onClick={() => handlePresetMessage("Is there any wheelchair accessible cafés?")} variant="primary" className="preset-message">Is there any wheelchair accessible cafés?</Button>
+          <Button onClick={() => handlePresetMessage("Are there any wheelchair accessible cafés?")} variant="primary" className="preset-message">Are there any wheelchair accessible cafés?</Button>
           <Button onClick={() => handlePresetMessage("How can I get around Gothenburg? What are the public transportation options?")} variant="primary" className="preset-message">How can I get around Gothenburg? What are the public transportation options?</Button>
         </div>
       )}
