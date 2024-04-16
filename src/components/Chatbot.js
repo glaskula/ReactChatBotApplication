@@ -7,15 +7,34 @@ import englishFlag from '../assets/ukFlag.jpg'; // Import the English flag image
 import swedishFlag from '../assets/swedenFlag.png'; // Import the Swedish flag image
 import { Container, Button } from 'react-bootstrap';
 import '../css/Chatbot.css';
+import { saveAs } from 'file-saver';
+
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const url = 'https://flaskapp-002ep-ai-xjob.apps.ocpext.gbgpaas.se/ask'; // Your Flask route
   const [isLoading, setIsLoading] = useState(false); // New state for loading indicator
   const [language, setLanguage] = useState('en'); // State variable for language, default is English
+  const [conversationHistory, setConversationHistory] = useState([]); // State variable to hold conversation history
+
+  // Save conversation history to file when the page is unloaded
+  useEffect(() => {
+    const handleUnload = () => {
+      const textToSave = JSON.stringify(conversationHistory, null, 2);
+      const file = new Blob([textToSave], { type: 'application/json' });
+      saveAs(file, 'conversation_history.json');
+    };
+
+    window.addEventListener('beforeunload', handleUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload);
+    };
+  }, [conversationHistory]);
 
   // Modified to send user's message to the Flask app and receive a response
   const getLlmResponse = async (userMessage) => {
+    const startTime = performance.now(); // Get start time
     setIsLoading(true); // Start loading
     // Create a conversation history from the current messages state
     const conversationHistory = messages.map(message => ({
@@ -42,7 +61,13 @@ const Chatbot = () => {
       }
   
       const data = await response.json();
+      const endTime = performance.now(); // Get end time
+      const executionTime = (endTime - startTime)/1000; // Calculate execution time
       setIsLoading(false); // Stop loading
+      setConversationHistory(prevHistory => [
+        ...prevHistory,
+        { userMessage, botResponse: data.response, executionTime: executionTime }
+      ]);
       return data.response;
     } catch (error) {
       console.error('There was a problem with the POST request:', error);
